@@ -232,10 +232,20 @@
             border-radius: 50%;
         }
         @media (max-width: 768px) {
-    .nav-container {
-        flex-direction: column;
-        padding: 0 1rem;
+ 
+        .nav-menu {
+        display: flex;
+        flex-direction: row;   /* Yatayda yan yana diz */
+        gap: 0.5rem;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        background: white;
+        padding: 0.5rem 0;
     }
+   }
+    /* Diğer responsive ayarlarınız burada kalabilir */
+    
     .logo {
         font-size: 1.2rem;
         gap: 0.5rem;
@@ -257,7 +267,7 @@
         max-width: 95vw;
         margin: 1rem auto;
     }
-}
+
         
         .perforation-hole:nth-child(1) { top: 20px; left: 28px; }
         .perforation-hole:nth-child(2) { top: 20px; right: 28px; }
