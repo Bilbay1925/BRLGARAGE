@@ -812,15 +812,27 @@ button.prev-btn:hover, button.next-btn:hover {
     <section class="slider">
         <div class="slides">
             <div class="slide">
-                <img src="Resimler/servis 3.png" alt="Slide 1">
+            <img src="Resimler/servis 3.png" alt="Slide 1">
             </div>
             <div class="slide">
-                <img src="Resimler/audi.png" alt="Slide 2">
+            <img src="Resimler/audi.png" alt="Slide 2">
             </div>
             <div class="slide">
-                <img src="Resimler/slide3.jpg" alt="Slide 3">
+            <img src="Resimler/slide3.jpg" alt="Slide 3">
+            </div>
+            <!-- Sadece telefonda gösterilecek resim -->
+            <div class="slide mobile-only">
+            <img src="Resimler/servis alanı2.png" alt="Mobil Slide">
             </div>
         </div>
+        <style>
+            @media (min-width: 769px) {
+            .mobile-only { display: none !important; }
+            }
+            @media (max-width: 768px) {
+            .mobile-only { display: flex !important; }
+            }
+        </style>
         
     </section>
 
