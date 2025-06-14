@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BRL Garage Auto Service - Profesyonel Otomotiv Servisi</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            color: #333;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid #e0e0e0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #2d2d2d;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            color: #333;
+            text-decoration: none;
+            font-weight:bold;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+        }
+
+        .nav-menu a:hover {
+            background: #f0f0f0;
+            color: #2d2d2d;
+            transform: translateY(-2px);
+        }
+
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(255,255,255,0.9), rgba(240,240,240,0.8)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23ffffff" width="1200" height="600"/><text x="600" y="300" text-anchor="middle" fill="%23666" font-size="24" font-family="Arial"></text></svg>');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #333;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 2rem;
+            animation: fadeInUp 1s ease;
+            top: -50px;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+            color: #2d2d2d;
+            font-weight: bold;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            color: #555;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #2d2d2d;
+            color: white;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(45, 45, 45, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            background: #1a1a1a;
+            box-shadow: 0 6px 25px rgba(45, 45, 45, 0.4);
+        }
+
+        .section {
+            padding: 5rem 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #2d2d2d;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            width: 80px;
+            height: 4px;
+            background: #2d2d2d;
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            border-color: #2d2d2d;
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            color: #2d2d2d;
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 3rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #2d2d2d;
+        }
+
+        .brake-system-perforated {
+            width: 85px;
+            height: 85px;
+            position: relative;
+            margin: 0 auto;
+        }
+        
+        .brake-system-perforated .disk {
+            width: 70px;
+            height: 70px;
+            background: radial-gradient(circle at 30% 30%, #666, #333);
+            border-radius: 50%;
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            box-shadow: 0 5px 14px rgba(0,0,0,0.4);
+        }
+        
+        .brake-system-perforated .disk::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 22px;
+            height: 22px;
+            background: #222;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.6);
+        }
+        
+        .perforation-hole {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: #222;
+            border-radius: 50%;
+        }
+        @media (max-width: 768px) {
+    .nav-container {
+        flex-direction: column;
+        padding: 0 1rem;
+    }
+    .logo {
+        font-size: 1.2rem;
+        gap: 0.5rem;
+    }
+    .logo-images-left img, .logo-images-right img {
+        width: 30px;
+    }
+    .slider {
+        height: 200px;
+    }
+    .slide img {
+        height: 200px;
+    }
+    .nav-menu {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    .service-card {
+        max-width: 95vw;
+        margin: 1rem auto;
+    }
+}
+        
+        .perforation-hole:nth-child(1) { top: 20px; left: 28px; }
+        .perforation-hole:nth-child(2) { top: 20px; right: 28px; }
+        .perforation-hole:nth-child(3) { bottom: 20px; left: 28px; }
+        .perforation-hole:nth-child(4) { bottom: 20px; right: 28px; }
+        .perforation-hole:nth-child(5) { top: 28px; left: 20px; }
+        .perforation-hole:nth-child(6) { top: 28px; right: 20px; }
+        
+        .brake-system-perforated .caliper {
+            width: 26px;
+            height: 42px;
+            background: linear-gradient(135deg, #424242, #212121);
+            border-radius: 4px;
+            position: absolute;
+            top: 21px;
+            right: 0;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.4);
+        }
+        
+        .brake-system-perforated .caliper::before {
+            content: '';
+            position: absolute;
+            top: 8px;
+            left: -6px;
+            width: 10px;
+            height: 26px;
+            background: #616161;
+            border-radius: 2px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .gallery-photo {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-photo {
+            transform: scale(1.05);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(45, 45, 45, 0.9));
+            color: white;
+            padding: 2rem 1.5rem 1.5rem;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+
+        .gallery-overlay h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .gallery-overlay p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .about {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text {
+            padding: 2rem;
+        }
+
+        .about-image {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .garage-photo {
+            max-width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            border: 4px solid #e0e0e0;
+        }
+
+        .contact {
+            background: #f8f9fa;
+            color: #333;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .contact-item {
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border: 1px solid #e0e0e0;
+        }
+
+        .contact-icon {
+            font-size: 2.5rem;
+            color: #2d2d2d;
+            margin-bottom: 1rem;
+        }
+
+        .footer {
+            background: #2d2d2d;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            border-top: 2px solid #e0e0e0;
+        }
+
+        .brands {
+            background: white;
+            padding: 3rem 0;
+        }
+
+        .brands-grid {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .brand-logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #666;
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+        }
+
+        .brand-logo:hover {
+            opacity: 1;
+            color: #2d2d2d;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 1s ease;
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .floating-phone {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #2d2d2d;
+            color: white;
+            padding: 15px;
+            border-radius: 50%;
+            text-decoration: none;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 15px rgba(45, 45, 45, 0.4);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            animation: pulse 2s infinite;
+        }
+
+        .floating-phone:hover {
+            transform: scale(1.1);
+            background: #1a1a1a;
+            box-shadow: 0 6px 25px rgba(45, 45, 45, 0.6);
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(45, 45, 45, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(45, 45, 45, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(45, 45, 45, 0);
+            }
+        }
+        .logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #2d2d2d;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem; /* Logo ile resimler arasındaki boşluk */
+    position: relative;
+    
+}
+
+.logo-images-left, .logo-images-right {
+    display: flex;
+    gap: 0.5rem; /* Resimler arasındaki boşluk */
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.logo-images-left {
+    left: -150px; /* Sol tarafa hizalama */
+}
+
+.logo-images-right {
+    right: -150px; /* Sağ tarafa hizalama */
+}
+
+.logo-images-left img, .logo-images-right img {
+    width: 40px; /* Resim genişliği */
+    height: auto; /* Oranları koru */
+    border-radius: 5px; /* Köşeleri yuvarla */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Hafif gölge */
+}
+.slider {
+    position: relative;
+    width: 100%;
+    height: 375px; /* Slider yüksekliği */
+    overflow: hidden;
+}
+
+.slides {
+    display: flex;
+    transition: transform 0.5s ease-in-out; /* Geçiş animasyonu */
+}
+
+.slide {
+    width: 100%;
+    height: 100%;
+    flex-shrink: 0;
+}
+
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Görseli düzgün şekilde yerleştirir */
+}
+
+button.prev-btn, button.next-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    z-index: 1000;
+    font-size: 1.5rem;
+    border-radius: 5px;
+}
+
+button.prev-btn {
+    left: 10px;
+}
+
+button.next-btn {
+    right: 10px;
+}
+
+button.prev-btn:hover, button.next-btn:hover {
+    background: rgba(0, 0, 0, 0.8);
+}@media (max-width: 768px) {
+    .nav-container {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 0 1rem;
+        gap: 1rem;
+    }
+    .logo {
+        font-size: 1.1rem;
+        gap: 0.3rem;
+        flex-direction: column;
+        align-items: center;
+    }
+    .logo-images-left, .logo-images-right {
+        position: static;
+        transform: none;
+        margin-bottom: 0.5rem;
+        justify-content: center;
+    }
+    .logo-images-left img, .logo-images-right img {
+        width: 28px;
+    }
+    .nav-menu {
+        flex-direction: column;
+        gap: 0.5rem;
+        width: 100%;
+        align-items: flex-start;
+    }
+    .slider {
+        height: 180px;
+    }
+    .slide img {
+        height: 180px;
+    }
+    .service-card {
+        max-width: 98vw;
+        margin: 1rem auto;
+        padding: 1rem;
+    }
+    .services-grid {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    .hero-content {
+        padding: 1rem;
+        font-size: 1rem;
+    }
+    .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    .footer {
+        padding: 1rem 0;
+        font-size: 0.95rem;
+    }
+    .floating-phone {
+        padding: 10px;
+        font-size: 1.2rem;
+        bottom: 10px;
+        right: 10px;
+    }
+}
+
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="nav-container">
+            <div class="logo">
+                <div class="logo-images-left">
+                    <img src="Resimler/y-nghia-logo-audi.jpg" alt="Logo 1">
+                    <img src="Resimler/Volkswagen_logo.png" alt="Logo 2">
+                    <img src="Resimler/indir.png" alt="Logo 3">
+                </div>
+                BRL GARAGE
+            
+                <div class="logo-images-right">
+                    <img src="Resimler/seat-logo-png_seeklogo-208548.png" alt="Logo 4">
+                    <img src="Resimler/IMG_1927.png" alt="Logo 5">
+                    <img src="Resimler/Cupra_black.png" alt="Logo 6">
+                </div>
+            </div>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="#home">Ana Sayfa</a></li>
+                    <li><a href="#services">Hizmetler</a></li>
+                    <li><a href="#about">Hakkımızda</a></li>
+                    <li><a href="#gallery">Galeri</a></li>
+                    <li><a href="#contact">İletişim</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <section class="slider">
+        <div class="slides">
+            <div class="slide">
+                <img src="Resimler/servis 3.png" alt="Slide 1">
+            </div>
+            <div class="slide">
+                <img src="Resimler/audi.png" alt="Slide 2">
+            </div>
+            <div class="slide">
+                <img src="Resimler/slide3.jpg" alt="Slide 3">
+            </div>
+        </div>
+        <button class="prev-btn">‹</button>
+        <button class="next-btn">›</button>
+    </section>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>BRL GARAGE</h1>
+            <h2>AUTO SERVİCE</h2>
+            <p>Profesyonel Otomotiv Servisi - Audi, VW, Seat, Škoda, Porsche, Cupra Uzmanı</p>
+            <a href="https://wa.me/905365795654" class="cta-button">Hemen Arayın</a>
+        </div>
+    </section>
+
+    <section class="brands">
+        <div class="container">
+            <div class="brands-grid">
+                <div class="brand-logo">AUDI</div>
+                <div class="brand-logo">VOLKSWAGEN</div>
+                <div class="brand-logo">SEAT</div>
+                <div class="brand-logo">ŠKODA</div>
+                <div class="brand-logo">PORSCHE</div>
+                <div class="brand-logo">CUPRA</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="section">
+        <div class="container">
+            <h2 class="section-title">Hizmetlerimiz</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">🔧</div>
+                    <h3>Genel Bakım</h3>
+                    <p>Periyodik bakım, yağ değişimi, filtre değişimi ve genel kontroller. Aracınızın performansını maksimumda tutuyoruz.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🔩</div>
+                    <h3>Motor Tamiri</h3>
+                    <p>Motor arızaları, timing kayışı değişimi, turbo tamiri ve motor revizyonu. Uzman ekibimizle güvenle çalışıyoruz.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <div class="brake-system-perforated">
+                            <div class="disk">
+                                <div class="perforation-hole"></div>
+                                <div class="perforation-hole"></div>
+                                <div class="perforation-hole"></div>
+                                <div class="perforation-hole"></div>
+                                <div class="perforation-hole"></div>
+                                <div class="perforation-hole"></div>
+                            </div>
+                            <div class="caliper"></div>
+                        </div>
+                    </div>
+                    <h3>Fren Sistemi</h3>
+                    <p>Fren balata değişimi, disk tornalama, fren hidroliği ve ABS sistemi tamiri. Güvenliğiniz önceliğimiz.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">⚡</div>
+                    <h3>Elektrik Sistemi</h3>
+                    <p>Elektriksel arıza tespiti, ECU programlama, sensör değişimi ve kablolama işlemleri.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🏁</div>
+                    <h3>Performans Tuning</h3>
+                    <p> Egzoz sistemi, hava filtresi upgrades ve performans optimizasyonu.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🔍</div>
+                    <h3>Arıza Tespiti</h3>
+                    <p>Bilgisayarlı arıza tespiti, OBD tarama, elektronik sistem kontrolü ve detaylı analiz.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="section about">
+        <div class="container">
+            <h2 class="section-title">Hakkımızda</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Uzman Ekip, Güvenilir Hizmet</h3>
+                    <p>BRL Garage olarak, otomotiv sektöründe yılların tecrübesi ile hizmet veriyoruz. Özellikle Alman otomotiv markaları olan Audi, Volkswagen, Seat, Škoda, Porsche ve Cupra konusunda uzmanlaşmış ekibimizle, aracınız için en kaliteli hizmeti sunuyoruz.</p>
+                    
+                    <p>Modern teçhizatlarımız ve orijinal yedek parça kullanımımızla, aracınızın performansını en üst seviyede tutmayı hedefliyoruz. Müşteri memnuniyeti odaklı yaklaşımımız ve şeffaf fiyat politikamızla güven veriyoruz.</p>
+                    
+                    <p>Sanayi bölgesindeki modern tesisimizde, deneyimli teknik ekibimiz aracınızın her türlü bakım ve onarım ihtiyacını karşılamaktadır.</p>
+                </div>
+                <div class="about-image">
+                    <img src="Resimler/servis alanı.png" alt="BRL Garage Servis" class="garage-photo">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="gallery" class="section">
+        <div class="container">
+            <h2 class="section-title">Galeri</h2>
+            <div class="gallery-grid">
+                <!-- Kendi fotoğrafınızı eklemek için aşağıdaki örneği kullanın -->
+                <div class="gallery-item">
+                    <img src="Resimler/servis alanı2.png" alt="Servis Alanı" class="gallery-photo">
+                    <div class="gallery-overlay">
+                        <h3>Servis Fotoğrafı</h3>
+                        <p>Gerçek servis alanımızdan bir kare</p>
+                    </div>
+                </div>
+                <!-- Diğer galeri öğeleri burada devam eder -->
+                <div class="gallery-item">
+                    <img src="Resimler/arıza tespit.png" alt="Arıza Tespit Cihazı" class="gallery-photo">
+                    <div class="gallery-overlay">
+                        <h3>Arıza Tespit Sistemi</h3>
+                        <p>Bilgisayarlı arıza tespit cihazlarımız</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="Resimler/parca.png" alt="Yedek Parçalar" class="gallery-photo">
+                    <div class="gallery-overlay">
+                        <h3>Orijinal Yedek Parçalar</h3>
+                        <p>Sadece orijinal ve kaliteli parçalar kullanıyoruz</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="Resimler/ekip.png" alt="Uzman Ekip" class="gallery-photo">
+                    <div class="gallery-overlay">
+                        <h3>Deneyimli Ekibimiz</h3>
+                        <p>Alanında uzman teknisyenlerimiz</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="Resimler/ortam.png" alt="Temiz Çalışma Ortamı" class="gallery-photo">
+                    <div class="gallery-overlay">
+                        <h3>Temiz Çalışma Ortamı</h3>
+                        <p>Hijyenik ve düzenli servis alanımız</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="Resimler/marka.png" alt="Marka Uzmanlığı" class="gallery-photo">
+                    <div class="gallery-overlay">
+                        <h3>Marka Uzmanlığı</h3>
+                        <p>Alman otomotiv markalarında uzman hizmet</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section contact">
+        <div class="container">
+            <h2 class="section-title" style="color: #333;">İletişim</h2>
+            <div class="contact-grid">
+                <div class="contact-item">
+                    <div class="contact-icon">📞</div>
+                    <h3>Telefon</h3>
+                    <p>0536 579 56 54</p>
+                    <p>Hemen arayın, randevu alın!</p>
+                    <h3>Sosyal Medya</h3>
+                    <!-- Instagram butonu örneği -->
+<a href="https://instagram.com/brlgarage" target="_blank" style="display:inline-block; background:#E1306C; color:white; padding:10px 20px; border-radius:30px; text-decoration:none; font-weight:bold;">
+    <!-- İkon için SVG -->
+    <svg width="20" height="20" viewBox="0 0 448 512" style="vertical-align:middle; margin-right:8px;"><path fill="white" d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9 114.9-51.3 114.9-114.9S287.7 141 224.1 141zm0 186c-39.5 0-71.5-32-71.5-71.5s32-71.5 71.5-71.5 71.5 32 71.5 71.5-32 71.5-71.5 71.5zm146.4-194.3c0 14.9-12 26.9-26.9 26.9s-26.9-12-26.9-26.9 12-26.9 26.9-26.9 26.9 12 26.9 26.9zm76.1 27.2c-1.7-35.3-9.9-66.7-36.2-92.9S388.6 1.7 353.3 0C317.7-1.7 130.3-1.7 94.7 0 59.4 1.7 28 9.9 1.7 36.2S1.7 123.4 0 158.7c-1.7 35.6-1.7 223 0 258.6 1.7 35.3 9.9 66.7 36.2 92.9s57.6 34.5 92.9 36.2c35.6 1.7 223 1.7 258.6 0 35.3-1.7 66.7-9.9 92.9-36.2s34.5-57.6 36.2-92.9c1.7-35.6 1.7-223 0-258.6zM398.8 388c-7.8 19.6-22.9 34.7-42.5 42.5-29.4 11.7-99.2 9-132.3 9s-102.9 2.6-132.3-9c-19.6-7.8-34.7-22.9-42.5-42.5-11.7-29.4-9-99.2-9-132.3s-2.6-102.9 9-132.3c7.8-19.6 22.9-34.7 42.5-42.5 29.4-11.7 99.2-9 132.3-9s102.9-2.6 132.3 9c19.6 7.8 34.7 22.9 42.5 42.5 11.7 29.4 9 99.2 9 132.3s2.6 102.9-9 132.3z"/></svg>
+    Instagram
+</a>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">📍</div>
+                    <h3>Adres</h3>
+                    <p>2. Oto Sanayi Sitesi Kazımdirik, 302. Sk. no, 35300</p>
+                    <p>İzmir, Türkiye</p>
+                    <!-- Google Maps konumu -->
+         
+<iframe 
+src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3124.8977420173005!2d27.1866076757676!3d38.44383087182442!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14b9636fb1430c3d%3A0xaba45c2493ed3d8b!2sBRL%20GARAGE%20%C3%B6zel%20Volkswagen%20servisi!5e0!3m2!1str!2str!4v1749905704771!5m2!1str!2str" 
+  width="200"
+  height="200"
+  style="border:0;"
+  allowfullscreen=""
+  loading="lazy"
+  referrerpolicy="no-referrer-when-downgrade">
+</iframe>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">🕒</div>
+                    <h3>Çalışma Saatleri</h3>
+                    <p>Pazartesi - Cuma</p>
+                    <p>08:30 - 19:00</p>
+                    <p>Cumartesi</p>
+                    <p>08:30 - 16:00</p>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">⚙️</div>
+                    <h3>Uzman Markalar</h3>
+                    <p>Audi • VW • Seat</p>
+                    <p>Škoda • Porsche • Cupra</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 BRL Garage Auto Service. Tüm hakları saklıdır.</p>
+            <p>Profesyonel otomotiv çözümleri için güvenilir adresiniz.</p>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/905365795654" class="floating-phone">📞</a>
+
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.service-card, .about-text, .contact-item, .gallery-item').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+                header.style.boxShadow = '0 2px 20px rgba(0,0,0,0.15)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
+            }
+        });
+    </script>
+</body>
+</html>
